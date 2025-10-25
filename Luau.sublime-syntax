@@ -14,7 +14,7 @@ contexts:
     - include: comment
     - include: local-declaration
     - include: for-loop
-    - include: type-function
+    - include: type-function-declaration
     - include: type-alias-declaration
     - include: keyword
     - include: language_constant
@@ -23,6 +23,7 @@ contexts:
     - include: operator
     - include: parentheses
     - include: table
+    - include: vector-literal
     - include: type_cast
     - include: type_annotation
     - include: attribute
@@ -58,7 +59,6 @@ contexts:
     - match: '(@)([a-zA-Z_][a-zA-Z0-9_]*)'
       scope: meta.attribute.luau
       captures:
-        1: keyword.operator.attribute.luau
         2: storage.type.attribute.luau
   doc_comment_tags:
     - match: '@\w+'
@@ -67,6 +67,18 @@ contexts:
       captures:
         1: storage.type.class.luadoc.luau
         2: variable.parameter.luau
+    - match: '((?<=[\s*!\/])[\\@]return)(?:\s)+(\b\w+\b)'
+      captures:
+        1: storage.type.class.luadoc.luau
+        2: variable.parameter.luau
+    - match: '((?<=[\s*!\/])[\\@]type)(?:\s)+(\b\w+\b)'
+      captures:
+        1: storage.type.class.luadoc.luau
+        2: entity.name.type.luau
+    - match: '((?<=[\s*!\/])[\\@]field)(?:\s)+(\b\w+\b)'
+      captures:
+        1: storage.type.class.luadoc.luau
+        2: variable.other.property.luau
   for-loop:
     - match: \b(for)\b
       captures:
@@ -275,6 +287,8 @@ contexts:
       scope: constant.character.escape.luau
     - match: '\\x[0-9a-fA-F]{2}'
       scope: constant.character.escape.luau
+    - match: '\\x\{[0-9a-fA-F]*\}'
+      scope: constant.character.escape.luau
     - match: '\\u\{[0-9a-fA-F]*\}'
       scope: constant.character.escape.luau
     - match: \\$
@@ -302,7 +316,7 @@ contexts:
         - include: type_literal
         - match: '='
           scope: keyword.operator.assignment.luau
-  type-function:
+  type-function-declaration:
     - match: ^\b(?:(export)\s+)?(type)\s+(function)\b
       captures:
         1: storage.modifier.visibility.luau
@@ -417,3 +431,22 @@ contexts:
             1: variable.parameter.luau
             2: keyword.operator.type.luau
         - include: type_literal
+  vector-literal:
+    - match: '\b(vector)\b'
+      scope: support.function.luau
+      push:
+        - match: '(?<=[\)])'
+          pop: true
+        - match: \(
+          captures:
+            0: punctuation.definition.arguments.begin.luau
+          push:
+            - match: \)
+              captures:
+                0: punctuation.definition.arguments.end.luau
+              pop: true
+            - include: number
+            - include: operator
+            - include: comment
+            - match: ','
+              scope: punctuation.separator.arguments.luau
