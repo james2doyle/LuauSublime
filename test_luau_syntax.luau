@@ -51,6 +51,8 @@ export type Point = {
     y: number,
 }
 
+type async: "io_uring" | "epoll" | "kqueue" | "iocp"
+
 export type Formatter = (s: string, nocolor: boolean?) -> string
 
 local function formatter(open: string, close: string, replace: string?): Formatter
@@ -347,3 +349,12 @@ vector.sign(vec: vector): vector
 vector.clamp(vec: vector, min: vector, max: vector): vector
 vector.max(...: vector): vector
 vector.min(...: vector): vector
+zune.ffi.struct(fields: {{[string]: FFIAnyDataType }}): FFIStructureType
+zune.ffi.fn(definition: FFIFunctionDefintion, srcPtr: FFIPointer): ((...any) -> any)
+zune.mem.copy(dest: MemWritableSlice, destOffset: number, src: MemReadableSlice, srcOffset: number, count: number?): ()
+zune.task.delay(sec: number, f: ((A...) -> (R...)) | thread, A...): thread
+zune.process.run(exec: string): ProcessRunResult<string>
+zune.process.run(exec: string, args: {string}?): ProcessRunResult<string>
+zune.process.run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: false?): ProcessRunResult<string?>
+zune.process.run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: true): ProcessRunResult<buffer?>
+zune.process.run(exec: string, args: {string}?, opts: ProcessOptions?, bytes: boolean?): ProcessRunResult<string | buffer?>
