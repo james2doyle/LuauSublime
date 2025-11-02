@@ -379,7 +379,7 @@ contexts:
       scope: constant.language.boolean.false.luau
     - match: \b(true)\b
       scope: constant.language.boolean.true.luau
-    - match: \b(nil|string|number|boolean|thread|userdata|symbol|vector|buffer|unknown|never|any)\b
+    - match: \b(nil|string|number|boolean|function|table|thread|userdata|symbol|vector|buffer|iterator|unknown|never|any)\b
       scope: support.type.primitive.luau
     - match: \b(typeof)\b(\()
       captures:
