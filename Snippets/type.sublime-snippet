@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:export }type ${2:Point} = ${3:{ ${4: x: number, y: string }}}$0
+]]></content>
+	<tabTrigger>type</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed type export</description>
+</snippet>

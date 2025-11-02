@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+--- ${1:My new function}
+${2:local }function ${3:do_something}(${4:${5:path}${6:: string}}): ${7:number}
+  ${8:return 1}
+end$0
+]]></content>
+	<tabTrigger>fun</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed function</description>
+</snippet>

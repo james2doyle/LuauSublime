@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:local }${2:myVal}: ${3:number} = ${4:1}$0
+]]></content>
+	<tabTrigger>var</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed variable</description>
+</snippet>

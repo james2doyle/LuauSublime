@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:local }${2:object}: ${3:{ ${4: x: number, y: string }}} = ${5:{ ${6: 1 = '1' } }}$0
+]]></content>
+	<tabTrigger>object</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed object/table</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:local }${2:myVal}: ${3:number} = if ${4:x < 0} then ${5:-1} elseif ${6:x > 0} then ${7:1} else ${8:b}$0
+]]></content>
+	<tabTrigger>elif</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed elseif ternary</description>
+</snippet>

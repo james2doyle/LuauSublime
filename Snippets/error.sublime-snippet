@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+error(${1:obj: any}${2:, ${3:level: number?}})$0
+]]></content>
+	<tabTrigger>error</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed error</description>
+</snippet>
