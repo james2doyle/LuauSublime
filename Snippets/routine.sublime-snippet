@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+local function ${1:fnname}(): ()
+  while true do
+    task.defer()
+
+    if math.random(1, 2) == 1 then
+      error("oops")
+    end
+  end
+end
+
+coroutine.resume(coroutine.create(${1:fnname}))$0
+]]></content>
+	<tabTrigger>routine</tabTrigger>
+	<scope>source.luau - comment - string</scope>
+	<description>Luau typed coroutine loop that starts right away</description>
+</snippet>
